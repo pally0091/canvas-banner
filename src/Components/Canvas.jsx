@@ -47,10 +47,28 @@ const Canvas = () => {
   const [selectedCanvas, setSelectedCanvas] = useState(
     "basetitle Day in London"
   );
-
+  // button click handlers
   const handleButtonClick = (canvas) => {
     setSelectedCanvas(canvas);
   };
+  const nextButtonHandle = () => {
+    const currentIndex = canvas.findIndex(
+      (canvasName) => canvasName === selectedCanvas
+    );
+    if (currentIndex < canvas.length - 1) {
+      setSelectedCanvas(canvas[currentIndex + 1]);
+    }
+  };
+
+  const prevButtonHandle = () => {
+    const currentIndex = canvas.findIndex(
+      (canvasName) => canvasName === selectedCanvas
+    );
+    if (currentIndex > 0) {
+      setSelectedCanvas(canvas[currentIndex - 1]);
+    }
+  };
+
   console.log(selectedCanvas);
   return (
     <div>
@@ -84,6 +102,18 @@ const Canvas = () => {
                   }
                 </p>
               </div>
+              <button
+                className="absolute top-1/2 right-1 font-bold bg-white p-2 rounded-full"
+                onClick={nextButtonHandle}
+              >
+                &gt;&gt;
+              </button>
+              <button
+                className="absolute top-1/2 left-1 font-bold bg-white p-2 rounded-full"
+                onClick={prevButtonHandle}
+              >
+                &lt;&lt;
+              </button>
             </div>
           )}
         </div>
@@ -105,7 +135,6 @@ const Canvas = () => {
             </button>
           ))}
         </Slider>
-        <div className="absolute bottom-0 w-full flex "></div>
       </div>
     </div>
   );
