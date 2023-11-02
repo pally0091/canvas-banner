@@ -1,11 +1,19 @@
 /* eslint-disable no-unused-vars */
+import { data } from "autoprefixer";
 import React, { useState } from "react";
+import Slider from "./Slider";
 
 const Canvas = () => {
-  const canvas = ["data 1", "data 2", "data 3", "data 4", "data 5"];
+  const canvas = [
+    "basetitle Day in London",
+    "data 2",
+    "data 3",
+    "data 4",
+    "things to do in London",
+  ];
   const canvasData = [
     {
-      canvas: "data 1",
+      canvas: "basetitle Day in London",
       title: "title 1",
       description: "description 1",
       img: "/src/assets/istock.jpg",
@@ -29,19 +37,21 @@ const Canvas = () => {
       img: "/src/assets/istock3.jpg",
     },
     {
-      canvas: "data 5",
+      canvas: "things to do in London",
       title: "title 5",
       description: "description 5",
       img: "/src/assets/istock2.jpg",
     },
   ];
 
-  const [selectedCanvas, setSelectedCanvas] = useState(null);
+  const [selectedCanvas, setSelectedCanvas] = useState(
+    "basetitle Day in London"
+  );
 
   const handleButtonClick = (canvas) => {
     setSelectedCanvas(canvas);
   };
-
+  console.log(selectedCanvas);
   return (
     <div>
       <h1>Canvas</h1>
@@ -61,7 +71,7 @@ const Canvas = () => {
                 />
               </div>
               <div className="absolute bottom-10 md:bottom-20 lg:bottom-40 left-0 bg-black p-4 pe-10 w-full text-left">
-                <h2 className=" bg-red-500 text-white bg-opacity-70 p-2 text-xl font-semibold">
+                <h2 className=" w-fit bg-red-500 text-white bg-opacity-70 p-2 text-xl font-semibold">
                   {
                     canvasData.find((data) => data.canvas === selectedCanvas)
                       .title
@@ -77,10 +87,10 @@ const Canvas = () => {
             </div>
           )}
         </div>
-        <div className="absolute bottom-0 w-full flex ">
+        <Slider className="absolute bottom-0 w-full">
           {canvas.map((canvasName) => (
             <button
-              className={`relative p-2 md:p-5 w-full lg:p-5 border border-black z-10 ${
+              className={`relative p-2 md:p-5 lg:p-5 border-s border-black min-w-[25%] z-10 ${
                 selectedCanvas === canvasName
                   ? "bg-red-400 text-white"
                   : "bg-gray-200 text-black"
@@ -94,7 +104,8 @@ const Canvas = () => {
               {canvasName}
             </button>
           ))}
-        </div>
+        </Slider>
+        <div className="absolute bottom-0 w-full flex "></div>
       </div>
     </div>
   );
